@@ -1,10 +1,8 @@
 import React from "react";
 
 export default function Show(props) {
-  const {onEdit, onDelete} = props;
-  const student = props.interview.student;
-  const interviewer = props.interview.interviewer.name
-
+  const {onEdit, onDelete, student, interviewer} = props;
+  
   return (
     <main className="appointment__card appointment__card--show">
       <section className="appointment__card-left">
