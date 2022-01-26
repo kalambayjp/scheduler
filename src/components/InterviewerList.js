@@ -4,6 +4,7 @@ import "./InterviewerList.scss"
 
 export default function InterviewerList(props) {
   const { interviewers, onChange, value } = props;
+  // console.log("interviewers",interviewers);
   const availableInterviewers = interviewers.map((indInterviewer) => {
     return (
       <InterviewerListItem 

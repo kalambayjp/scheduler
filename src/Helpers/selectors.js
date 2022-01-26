@@ -1,56 +1,49 @@
 export function getAppointmentsForDay(state, day) {
-  const selectedDaysAppointments =[]
-  let selectedDay;
-  
-  for (const stateDay of state.days) {
-    if (stateDay.name === day) {
-      selectedDay = stateDay
-    }
+  const result = [];
+  // find the day object
+  const dayObj = state.days.find(d => d.name === day)
+  if (!dayObj) {
+    return result;
   }
 
-  if (!selectedDay) {
-    return selectedDaysAppointments;
+  // iterate the days appointment ids
+  for (const id of dayObj.appointments) {
+    const appointment = state.appointments[id];
+    result.push(appointment)
   }
-  
-  for (const appointment in state.appointments) {
-    if (selectedDay.appointments.includes(state.appointments[appointment].id)) {
-      selectedDaysAppointments.push(state.appointments[appointment])
-    }
-  }
-  
-  return selectedDaysAppointments;
+  // add appointment object to 
+
+  return result;
 }
+
+
 
 export function getInterview(state, interview) {
   if (!interview) {
     return null
   }
-  const student = interview.student;
-  const interviewerId = interview.interviewer
-  let result = {
-    student: student,
-    interviewer: {}
-  };
 
-  for (const obj in state.interviewers) {
-    if (state.interviewers[obj].id === interviewerId) {
-      result.interviewer = state.interviewers[obj]
-    }
-  }
+  const id = interview.interviewer;
+  const interviewer = state.interviewers[id];
+  const result = { ...interview, interviewer: interviewer }
+
   return result;
 }
 
 export function getInterviewersForDay(state, day) {
-  let selectedDay;
-  for (const stateDay of state.days) {
-    if (stateDay.name === day) {
-      selectedDay = stateDay
-    }
+  const result = [];
+  // find the day object
+  const dayObj = state.days.find(d => d.name === day)
+  if (!dayObj) {
+    return result;
   }
-  if (!selectedDay) {
-    return {};
+  
+  // iterate the days appointment ids
+  for (const id of dayObj.interviewers) {
+    const interviewer = state.interviewers[id];
+    result.push(interviewer)
   }
+  // add appointment object to 
 
-  const selectedDaysInterviewers = selectedDay.interviewers
-  return selectedDaysInterviewers;
+  return result;
 }
