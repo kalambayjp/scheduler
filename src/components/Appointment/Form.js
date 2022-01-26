@@ -7,6 +7,7 @@ export default function Form(props) {
   const { studentName, interviewerId, interviewers, onSave, onCancel } = props;
   const [student, setStudent] = useState(studentName || "");
   const [interviewer, setInterviewer] = useState(interviewerId || null);
+  // console.log("interviewerId", interviewerId);
   // function reset() {
   //   onCancel();
   //   setInterviewer('');
@@ -30,7 +31,7 @@ export default function Form(props) {
         <InterviewerList
           interviewers={interviewers}
           onChange={setInterviewer}
-          name={studentName}
+          name="interviewer"
           value={interviewer}
 
         />
