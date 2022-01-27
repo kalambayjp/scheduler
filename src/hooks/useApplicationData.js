@@ -23,7 +23,7 @@ export function useApplicationData() {               // Initialize state object
         }))
       })
       .catch(err => console.log(err))
-  })
+  }, [])
 
   const setDay = day => setState({ ...state, day });  // Set day function to udpate selected day
 
@@ -32,18 +32,26 @@ export function useApplicationData() {               // Initialize state object
       ...state.appointments[id],
       interview: { ...interview }
     };
+    
     const appointments = {
       ...state.appointments,
       [id]: appointment
     };
 
+    const days = state.days.map(d => {
+      if (d.appointments.includes(id)) {
+        d.spots = d.spots - 1
+      }
+      return d
+    })
+
     return axios.put(`/api/appointments/${id}`, { interview })
-      .then(res => {
-        console.log(res);
-        setState({ ...state, appointments })
-        return res
-      })
-      .catch(err => console.log(err)) 
+    .then(res => {
+      console.log(res);
+      setState({ ...state, appointments, days })
+      return res
+    })
+    .catch(err => console.log(err))
   }
 
   function cancelInterview(id) {                     // Delete interview request
@@ -56,15 +64,21 @@ export function useApplicationData() {               // Initialize state object
       [id]: appointment
     }
 
-    return axios.delete(`/api/appointments/${id}`)
-      .then(res => {
-        console.log(res);
-        setState({ ...state, appointments })
-        return res
-      })
-      .catch(err => console.log(err))
-  }
+    const days = state.days.map(d => {
+      if (d.appointments.includes(id)) {
+        d.spots = d.spots + 1
+      }
+      return d
+    })
 
+    return axios.delete(`/api/appointments/${id}`)
+    .then(res => {
+      console.log(res);
+      setState({ ...state, appointments, days })
+      return res
+    })
+    .catch(err => console.log(err))
+  }
 
   return {
     state,

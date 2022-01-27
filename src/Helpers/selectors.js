@@ -1,4 +1,4 @@
-export function getAppointmentsForDay(state, day) {
+function getAppointmentsForDay(state, day) {
   const result = [];
   // find the day object
   const dayObj = state.days.find(d => d.name === day)
@@ -17,8 +17,7 @@ export function getAppointmentsForDay(state, day) {
 }
 
 
-
-export function getInterview(state, interview) {
+function getInterview(state, interview) {
   if (!interview) {
     return null
   }
@@ -30,7 +29,7 @@ export function getInterview(state, interview) {
   return result;
 }
 
-export function getInterviewersForDay(state, day) {
+function getInterviewersForDay(state, day) {
   const result = [];
   // find the day object
   const dayObj = state.days.find(d => d.name === day)
@@ -38,12 +37,17 @@ export function getInterviewersForDay(state, day) {
     return result;
   }
   
-  // iterate the days appointment ids
+  // iterate the days interviewers ids
   for (const id of dayObj.interviewers) {
     const interviewer = state.interviewers[id];
     result.push(interviewer)
   }
   // add appointment object to 
-
   return result;
+}
+
+export {
+  getAppointmentsForDay,
+  getInterview,
+  getInterviewersForDay
 }

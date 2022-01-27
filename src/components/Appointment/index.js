@@ -11,7 +11,6 @@ import Error from "./Error";
 
 export default function Appointment(props) {
   const { time, bookInterview, interview, interviewers, id, cancelInterview } = props;
-
   const text = time ? `Appointment at ${time}` : `No Appointments`;
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
@@ -33,9 +32,7 @@ export default function Appointment(props) {
     transition(SAVING)
 
     bookInterview(id, interview)
-    .then((response) => response ?  transition(SHOW) : transition(ERROR_SAVE, true))
-     
-      
+    .then((response) => response ?  transition(SHOW) : transition(ERROR_SAVE, true))  
   }
 
   function Delete() {

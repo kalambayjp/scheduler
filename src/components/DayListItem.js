@@ -7,8 +7,6 @@ export default function DayListItem(props) {
   const {name, selected, onChange, spots} = props;
   const listClass = classNames("day-list__item", {"day-list__item--selected": selected}, {"day-list__item--full": spots === 0});
   let spotsString = "spots remaining"
-  
-  
   const formatSpots = (spots) => {
     if (spots === 1) {
       spotsString = "spot remaining";
@@ -16,6 +14,7 @@ export default function DayListItem(props) {
       spotsString = "no spots remaining"
     }
   };
+  
   formatSpots(spots);
 
   return (
