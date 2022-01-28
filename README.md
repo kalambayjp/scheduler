@@ -1,5 +1,8 @@
 # Interview Scheduler
 
+## Description
+A single page apointment scheduling app created using ReactJS, WebPack, Babel, Axios< Websocket, Webpack Dev Server, PostgreSQL, Node JS, SASS and tested using Storybook, Jest, Cypress and React testing library. In the app users can navigate through week days to book, edit and delete appointments in available timeslots with their prefered interviewer.
+
 ## Setup
 
 Install dependencies with `npm install`.
