@@ -5,8 +5,14 @@ import "./DayListItem.scss"
 
 export default function DayListItem(props) {
   const {name, selected, onChange, spots} = props;
-  const listClass = classNames("day-list__item", {"day-list__item--selected": selected}, {"day-list__item--full": spots === 0});
-  let spotsString = "spots remaining"
+  const listClass = classNames(
+    "day-list__item",
+    {"day-list__item--selected": selected},
+    {"day-list__item--full": spots === 0}
+  );
+
+  let spotsString = "spots remaining";
+
   const formatSpots = (spots) => {
     if (spots === 1) {
       spotsString = "spot remaining";
@@ -22,6 +28,5 @@ export default function DayListItem(props) {
       <h2 className="text--regular">{name}</h2> 
       <h3 className="text--light" >{spots ? spots : ""} {spotsString}</h3>
     </li>
-    
   );
-}
+};

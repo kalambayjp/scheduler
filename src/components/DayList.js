@@ -10,11 +10,12 @@ export default function DayList(props) {
         {...singleDay}
         selected={singleDay.name === day}
         onChange={onChange}
-      />)
+      />
+  )
 
   return (
     <ul>
       {weekDays}
     </ul>
   )
-}
+};

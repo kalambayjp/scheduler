@@ -11,28 +11,29 @@ export default function Form(props) {
   
   function reset() {
     setStudent("");
-    setInterviewer(null)
-  }
+    setInterviewer(null);
+  };
 
   function cancel() {
     reset();
-    onCancel()
-  }
+    onCancel();
+  };
 
   function validate() {
     if (student === "") {
       setError("Student name cannot be blank");
       return;
     }
-    setError("")
-    onSave(student, interviewer)
-  }
+    setError("");
+    onSave(student, interviewer);
+  };
   
 
   return (
     <main className="appointment__card appointment__card--create">
       <section className="appointment__card-left">
         <form autoComplete="off">
+
           <input
             className="appointment__create-input text--semi-bold"
             name="name"
@@ -42,22 +43,30 @@ export default function Form(props) {
             onChange={(e) => setStudent(e.target.value)}
             data-testid="student-name-input"
           />
-          <section className="appointment__validation">{error}</section>
+          <section className="appointment__validation">
+            {error}
+          </section>
+
         </form>
+
         <InterviewerList
           interviewers={interviewers}
           onChange={setInterviewer}
           name="interviewer"
           value={interviewer}
-
         />
+
       </section>
+
       <section className="appointment__card-right">
         <section className="appointment__actions">
-          <Button danger onClick={cancel} >Cancel</Button>
+
+          <Button danger onClick={cancel}>Cancel</Button>
           <Button confirm onClick={() => validate(student, interviewer)}>Save</Button>
+
         </section>
       </section>
+
     </main>
   )
 }

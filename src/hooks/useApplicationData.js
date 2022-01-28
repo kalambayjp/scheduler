@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { updateSpots } from "Helpers/updateSpots";
+
 
 export function useApplicationData() {               // Initialize state object
   const [state, setState] = useState({
@@ -25,7 +27,9 @@ export function useApplicationData() {               // Initialize state object
       .catch(err => console.log(err))
   }, [])
 
+
   const setDay = day => setState({ ...state, day });  // Set day function to udpate selected day
+
 
   function bookInterview(id, interview) {             // Book interview request
     const appointment = {
@@ -38,47 +42,41 @@ export function useApplicationData() {               // Initialize state object
       [id]: appointment
     };
 
-    const days = state.days.map(d => {
-      if (d.appointments.includes(id)) {
-        d.spots = d.spots - 1
-      }
-      return d
-    })
-
+    const days = updateSpots(state, appointments)
+  
     return axios.put(`/api/appointments/${id}`, { interview })
     .then(res => {
-      console.log(res);
       setState({ ...state, appointments, days })
+
       return res
     })
     .catch(err => console.log(err))
   }
+
+
 
   function cancelInterview(id) {                     // Delete interview request
     const appointment = {
       ...state.appointments[id],
       interview: null
     }
+
     const appointments = {
       ...state.appointments,
       [id]: appointment
     }
 
-    const days = state.days.map(d => {
-      if (d.appointments.includes(id)) {
-        d.spots = d.spots + 1
-      }
-      return d
-    })
+    const days = updateSpots(state, appointments)
 
     return axios.delete(`/api/appointments/${id}`)
     .then(res => {
-      console.log(res);
       setState({ ...state, appointments, days })
       return res
     })
     .catch(err => console.log(err))
   }
+
+
 
   return {
     state,

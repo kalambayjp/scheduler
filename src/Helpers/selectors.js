@@ -1,17 +1,15 @@
 function getAppointmentsForDay(state, day) {
   const result = [];
-  // find the day object
+ 
   const dayObj = state.days.find(d => d.name === day)
   if (!dayObj) {
     return result;
   }
 
-  // iterate the days appointment ids
   for (const id of dayObj.appointments) {
     const appointment = state.appointments[id];
     result.push(appointment)
   }
-  // add appointment object to 
 
   return result;
 }
@@ -29,22 +27,24 @@ function getInterview(state, interview) {
   return result;
 }
 
+
 function getInterviewersForDay(state, day) {
   const result = [];
-  // find the day object
   const dayObj = state.days.find(d => d.name === day)
+
   if (!dayObj) {
     return result;
   }
-  
-  // iterate the days interviewers ids
+
   for (const id of dayObj.interviewers) {
     const interviewer = state.interviewers[id];
     result.push(interviewer)
   }
-  // add appointment object to 
+
   return result;
 }
+
+
 
 export {
   getAppointmentsForDay,

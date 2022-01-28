@@ -29,31 +29,34 @@ export default function Appointment(props) {
       interviewer
     };
 
-    transition(SAVING)
+    transition(SAVING);
 
     bookInterview(id, interview)
     .then((response) => response ?  transition(SHOW) : transition(ERROR_SAVE, true))  
-  }
+  };
 
   function Delete() {
-    transition(CONFIRM)
-  }
+    transition(CONFIRM);
+  };
 
   function confirmedDelete(id) {
-    transition(DELETING, true)
+    transition(DELETING, true);
     cancelInterview(id)
     .then((response) => response ? transition(EMPTY) : transition(ERROR_DELETE, true))
-  }
+  };
 
   function edit() {
     transition(EDIT);
-  }
+  };
 
   return (
     <article className="appointment">
+
       {text}
       <Header time={time} />
+
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
+
       {mode === SHOW && (
         <Show
           student={interview.student}
@@ -63,7 +66,9 @@ export default function Appointment(props) {
           id={id}
         />
       )}
+
       {mode === CREATE && <Form interviewers={interviewers} onSave={save} onCancel={back} />}
+
       {mode === EDIT && (
         <Form
           interviewerId={interview.interviewer.id}
@@ -73,8 +78,10 @@ export default function Appointment(props) {
           onCancel={back}
         />)
       }
+
       {mode === SAVING && <Status message="Saving" />}
       {mode === DELETING && <Status message="Deleting" />}
+
       {mode === CONFIRM &&
         <Confirm
           id={id}
@@ -82,10 +89,10 @@ export default function Appointment(props) {
           onCancel={back}
           onConfirm={confirmedDelete}
         />}
+
       {mode === ERROR_SAVE && <Error message="Could not save appointment" onClose={back} />}
       {mode === ERROR_DELETE && <Error message="Could not delete appointment" onClose={back} />}
 
-
     </article>
   )
-}
+};
