@@ -24,3 +24,8 @@ npm test
 ```sh
 npm run storybook
 ```
+## Screenshots
+
+!["Booking/Editing Appointments"](https://github.com/kalambayjp/scheduler/blob/master/docs/book_edit_appointment.png?raw=true)
+
+!["deleting Appointments"](https://github.com/kalambayjp/scheduler/blob/master/docs/delet_appointment.png?raw=true)
