@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Show(props) {
   const {onEdit, onDelete, student, interviewer, id} = props;
-  // console.log("props", props);
+
   return (
     <main className="appointment__card appointment__card--show">
       <section className="appointment__card-left">

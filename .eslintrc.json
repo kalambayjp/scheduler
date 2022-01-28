@@ -1,4 +1,15 @@
 {
   "extends": "react-app",
-  "parser": "babel-eslint"
+  "parser": "babel-eslint",
+  "globals": {
+    "cy": true
+  },
+  "overrides": [
+    {
+      "files": "*.spec.js",
+      "rules": {
+        "no-undef": "off"
+      }
+    }
+  ]
 }

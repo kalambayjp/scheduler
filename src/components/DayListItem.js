@@ -18,7 +18,7 @@ export default function DayListItem(props) {
   formatSpots(spots);
 
   return (
-    <li className={listClass} onClick={() => onChange(name)} >
+    <li className={listClass} onClick={() => onChange(name)} data-testid="day" >
       <h2 className="text--regular">{name}</h2> 
       <h3 className="text--light" >{spots ? spots : ""} {spotsString}</h3>
     </li>

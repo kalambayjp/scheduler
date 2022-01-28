@@ -5,7 +5,8 @@ export default function DayList(props) {
   const { day, days, onChange } = props;
   const weekDays = days.map(
     (singleDay, i) =>
-      <DayListItem key={i}
+      <DayListItem 
+        key={i}
         {...singleDay}
         selected={singleDay.name === day}
         onChange={onChange}
