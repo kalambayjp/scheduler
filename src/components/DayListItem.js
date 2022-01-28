@@ -17,7 +17,7 @@ export default function DayListItem(props) {
     if (spots === 1) {
       spotsString = "spot remaining";
     } else if (spots === 0) {
-      spotsString = "no spots remaining"
+      spotsString = "no spots remaining";
     }
   };
   

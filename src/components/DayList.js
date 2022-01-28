@@ -11,7 +11,7 @@ export default function DayList(props) {
         selected={singleDay.name === day}
         onChange={onChange}
       />
-  )
+  );
 
   return (
     <ul>
